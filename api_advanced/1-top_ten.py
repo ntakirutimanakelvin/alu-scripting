@@ -1,4 +1,3 @@
-cat > 1-top_ten.py << 'EOF'
 #!/usr/bin/python3
 """Query Reddit API for top ten hot posts of a subreddit."""
 
@@ -8,7 +7,7 @@ import requests
 def top_ten(subreddit):
     """Print titles of the first 10 hot posts for a subreddit."""
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
-    headers = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) alu-scripting/1.0"}
+    headers = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64)"}
     params = {"limit": 10}
     try:
         response = requests.get(
@@ -24,7 +23,3 @@ def top_ten(subreddit):
         return
     for child in children[:10]:
         print(child.get("data", {}).get("title"))
-EOF
-chmod +x 1-top_ten.py
-python3 1-main.py programming
-python3 1-main.py this_is_a_fake_subreddit
